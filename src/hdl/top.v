@@ -22,6 +22,7 @@
 
 module top(
     input CLK_5_MHZ,    // Our master clock, too fast so lets divide it
+    input CPU_RESETN,
     input reset,        // Reset of course, as usual
     input shift_sel,    // This will be how we control the direction of the shift module
     input func_sel,     // This will be how we select flash or shift outputs
@@ -31,7 +32,7 @@ module top(
     wire CLK_2_HZ;      // This is an important wire, it comes from the clock divider.
     clock_divider clk_div(          // This is how modules are instantiated. 
         .CLK_5_MHZ  (CLK_5_MHZ),    // They look similar to function calls but notice the '.'
-        .reset      (reset),        // This is known as using named port connections, 
+        .reset      (!CPU_RESETN),  // This is known as using named port connections, 
         .CLK_2_HZ   (CLK_2_HZ)      // you name the port you want to connect to on the left after a '.' and in brackets '()' your inputs/output wires
     );                              // The other option is using ordered port connections, I don't recommend those..
     

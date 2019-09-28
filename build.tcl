@@ -91,7 +91,7 @@ if { $::argc > 0 } {
 set orig_proj_dir "[file normalize "$origin_dir/intro_0_0"]"
 
 # Create project
-create_project build ./intro_0_0 -part xc7a100tcsg324-1
+create_project intro_0_0 ./intro_0_0 -part xc7a100tcsg324-1
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
