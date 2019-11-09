@@ -22,20 +22,12 @@
 
 module top(
     input CLK_5_MHZ,    // Our master clock, too fast so lets divide it
-    input CPU_RESETN,   // This will be the reset we use to reset the Clock Divider
     input reset,        // We will use this reset to reset our flash/shift module
     input shift_sel,    // This will be how we control the direction of the shift module
     input func_sel,     // This will be how we select flash or shift outputs
     output [15:0] led   // Our final led output based on the user's choice of switche settings
     );
-    
-    // More on CPURESETN: We want to seperate our resets as its generally good practice.
-    // Usually our resets are asynchronous, meaning they will reset regardless of clock,
-    // but on the off chance we use a synchronous reset (NOT RECOMMENDED) your flash/shift
-    // logic will be unable to reset their registers since you'd have frozen the 2Hz clock it needs!
-    // For the most part however, the design will work the same.
-    // CPURESETN is also a negative reset so you must invert it if the logic expects reset to be 1 for reset
-    
+        
     wire CLK_2_HZ;      // This is an important wire, it comes from the clock divider.
     clock_divider clk_div(          // This is how modules are instantiated. 
         .CLK_5_MHZ  (CLK_5_MHZ),    // They look similar to function calls but notice the '.'
