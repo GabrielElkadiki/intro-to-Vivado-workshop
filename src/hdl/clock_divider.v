@@ -21,12 +21,12 @@
 
 
 module clock_divider(
-    input CLK_5_MHZ,        // Our input clock, good practice to name your clocks after their frequency
+    input clk,              // Our input clock, it expects 100 MHz!
     input reset,            // Reset for resetting, in case you need to reset
     output reg CLK_2_HZ = 0 // Our output clock, notice its in Hz not MHz
     );
     integer count_2_HZ = 0;    // This is our count integer
-    always @(posedge CLK_5_MHZ, posedge reset) begin // This is the start of our behavioral logic
+    always @(posedge clk, posedge reset) begin // This is the start of our behavioral logic
         if(reset) begin                              // The logic below happens every positive edge
             count_2_HZ <= 0;                         // The reset is asynchronous
             CLK_2_HZ <= 0;

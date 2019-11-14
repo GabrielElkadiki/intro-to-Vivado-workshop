@@ -30,7 +30,7 @@ module top(
         
     wire CLK_2_HZ;      // This is an important wire, it comes from the clock divider.
     clock_divider clk_div(          // This is how modules are instantiated. 
-        .clk        (clk),    // They look similar to function calls but notice the '.'
+        .clk        (clk),          // They look similar to function calls but notice the '.'
         .reset      (reset),        // This is known as using named port connections, 
         .CLK_2_HZ   (CLK_2_HZ)      // you name the port you want to connect to on the left after a '.' and in brackets '()' your inputs/output wires
     );                              // The other option is using ordered port connections, I don't recommend those..
